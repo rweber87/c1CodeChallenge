@@ -1,0 +1,22 @@
+{
+  "name": "c1-challenge",
+  "version": "1.0.0",
+  "description": "code challenge for capital one",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rweber87/c1CodeChallenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rweber87/c1CodeChallenge/issues"
+  },
+  "homepage": "https://github.com/rweber87/c1CodeChallenge#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
