@@ -5,13 +5,33 @@ var measurementObject = {'2015-09-01T16:00:00.000Z': {temperature: [22.4], dewPo
 						};
 
 // Routes
+
+function getTimestamp(req){
+	return Object.keys(req)[0];
+}
+
+function handleExistingTimestamp(measurementObject, timestamp, req) {
+	var request = req.timestamp;
+	measurementObject.timestamp.temperature.push(request.temperature);
+	measurementObject.timestamp.dewPoint.push(request.temperature);
+	measurementObject.timestamp.precipitation.push(request.temperature);
+	return measurementObject;
+}
+
 router.post('/measurements', function(req, res){
-	res.send(measurementObject)
+	var timestamp = getTimestamp(req)
+	if(measurementObject.timestamp){
+		handleExistingTimestamp(measurementObject, timestamp, req);
+	} else {
+		measurementObject[timestamp] = req.timestamp;
+	}
+	res.send(measurementObject);
 });
 
 router.get('/measurements/:timestamp', function(req, res){
-	res.send(measurementObject)
-	console.log(req.body, "hitting this end point")
+	var timestamp = getTimestamp(req);
+	res.send(measurementObject.timestamp);
+	console.log(req.body, "hitting this end point");
 })
 
 router.get('/measurements/:date', function(req, res){
